@@ -82,10 +82,10 @@ export default function LandingPage() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left: Content */}
             <div className="space-y-8">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/[0.03] border border-white/[0.08] rounded-full text-xs text-zinc-400">
+              {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/[0.03] border border-white/[0.08] rounded-full text-xs text-zinc-400">
                 <Sparkles className="w-3.5 h-3.5 text-blue-400" />
                 <span>Design-first CRM inspired by Attio & Linear</span>
-              </div>
+              </div> */}
 
               <h1 className="text-5xl lg:text-6xl font-medium tracking-tight leading-[1.1]">
                 See your entire pipeline in one{' '}

@@ -31,7 +31,7 @@ const Navbar: React.FC<NavbarProps> = ({ transparent = true }) => {
                 {/* Logo */}
                 <button onClick={() => navigate('/')} className="flex items-center gap-2.5 group">
                     <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center font-bold text-sm shadow-lg shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-shadow">
-                        G
+                        S
                     </div>
                     <span className="text-lg font-semibold tracking-tight text-white">SkyCRM</span>
                 </button>

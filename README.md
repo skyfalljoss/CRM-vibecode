@@ -2,7 +2,7 @@
 
 A modern, high-performance CRM built for speed and aesthetics. Designed with a focus on visual clarity, SkyCRM helps small teams manage relationships, pipelines, and tasks without the clutter.
 
-![SkyCRM Hero](./public/hero-preview.png)
+
 
 ## 🚀 Features
 
