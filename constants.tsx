@@ -1,14 +1,14 @@
 
 import React from 'react';
-import { 
-  LayoutDashboard, 
-  Kanban, 
-  Users, 
-  CreditCard, 
-  Settings, 
-  Plus, 
-  Search, 
-  Bell, 
+import {
+  LayoutDashboard,
+  Kanban,
+  Users,
+  CreditCard,
+  Settings,
+  Plus,
+  Search,
+  Bell,
   ArrowRight,
   ChevronRight,
   Filter,
@@ -122,6 +122,7 @@ export const NAV_ITEMS = [
   { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard size={ICON_SIZE} /> },
   { id: 'pipeline', label: 'Pipeline', icon: <Kanban size={ICON_SIZE} /> },
   { id: 'leads', label: 'Leads', icon: <Users size={ICON_SIZE} /> },
+  { id: 'tasks', label: 'Tasks', icon: <CheckCircle2 size={ICON_SIZE} /> },
   { id: 'billing', label: 'Billing', icon: <CreditCard size={ICON_SIZE} /> },
   { id: 'settings', label: 'Settings', icon: <Settings size={ICON_SIZE} /> },
 ];
