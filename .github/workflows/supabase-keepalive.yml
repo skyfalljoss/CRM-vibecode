@@ -1,0 +1,58 @@
+name: Supabase Keepalive
+
+on:
+  schedule:
+    # Runs daily at 09:17 UTC.
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ping:
+    name: Ping Supabase
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL || secrets.VITE_SUPABASE_URL }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY || secrets.VITE_SUPABASE_ANON_KEY }}
+      SUPABASE_KEEPALIVE_TABLE: ${{ vars.SUPABASE_KEEPALIVE_TABLE || 'workspaces' }}
+
+    steps:
+      - name: Check required secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [ -z "${SUPABASE_URL}" ]; then
+            echo "Missing SUPABASE_URL or VITE_SUPABASE_URL repository secret."
+            exit 1
+          fi
+
+          if [ -z "${SUPABASE_ANON_KEY}" ]; then
+            echo "Missing SUPABASE_ANON_KEY or VITE_SUPABASE_ANON_KEY repository secret."
+            exit 1
+          fi
+
+      - name: Query Supabase REST API
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          table="${SUPABASE_KEEPALIVE_TABLE:-workspaces}"
+          url="${SUPABASE_URL%/}/rest/v1/${table}"
+
+          http_status="$(curl --silent --show-error --output /tmp/supabase-keepalive.json --write-out "%{http_code}" \
+            --get "${url}" \
+            --data-urlencode "select=id" \
+            --data-urlencode "limit=1" \
+            --header "apikey: ${SUPABASE_ANON_KEY}" \
+            --header "Authorization: Bearer ${SUPABASE_ANON_KEY}")"
+
+          echo "Supabase keepalive request returned HTTP ${http_status}."
+
+          if [ "${http_status}" -lt 200 ] || [ "${http_status}" -ge 300 ]; then
+            cat /tmp/supabase-keepalive.json
+            exit 1
+          fi

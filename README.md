@@ -35,8 +35,8 @@ A modern, high-performance CRM built for speed and aesthetics. Designed with a f
 1.  **Clone the repository**
 
     ```bash
-    git clone https://github.com/yourusername/skycrm.git
-    cd skycrm
+    git clone https://github.com/skyfalljoss/CRM-vibecode.git
+    cd CRM-vibecode
     ```
 
 2.  **Install dependencies**
@@ -139,3 +139,16 @@ For Single Page Applications (like this React app) to work correctly on refresh 
 ## �📄 License
 
 This project is licensed under the MIT License.
+
+## Supabase Keepalive
+
+This repo includes a scheduled GitHub Action at `.github/workflows/supabase-keepalive.yml` that pings Supabase once per day and can also be run manually from the GitHub Actions tab.
+
+Add these repository secrets in GitHub under **Settings -> Secrets and variables -> Actions**:
+
+```env
+SUPABASE_URL=your_supabase_project_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+If you already use `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` as GitHub secrets, the workflow will use those too. By default it queries the `workspaces` table with `select=id&limit=1`; you can change the table by adding a repository variable named `SUPABASE_KEEPALIVE_TABLE`.
